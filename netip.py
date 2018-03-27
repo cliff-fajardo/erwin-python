@@ -23,8 +23,9 @@ def subnet_range(start_subnet, end_subnet):
 
 #################################################
 # Output message displayed. {} are placeholders IPs & ticket number
+# santaclara10-1001-i10-swi-1-lo0 10.214.96.240/28 NANR-us-santaclara10-1001-i10-swi-1-loopback-(180323-000610)
 #################################################
-output_message = 'santaclara10-1001-i10-swi-1-lo0 {} NANR-us-santaclara10-1001-i10-swi-1-loopback-({})'
+output_message = '{}-lo0 {} NANR-{}-{}-({})'
 
 # start_subnet = "10.12.0.0/19"
 # end_subnet = "10.100.0.0/19"
@@ -61,6 +62,25 @@ else:
 	ticket_number = input("Enter ticket number: ")
 
 
+#################################################
+# 4. Get location
+# Check if its passed as a command line argument
+#################################################
+if len(sys.argv) > 4:
+	location_name = sys.argv[4]
+else:
+	location_name = input("Enter location: ")
+
+
+#################################################
+# 5. Get location
+# Check if its passed as a command line argument
+#################################################
+if len(sys.argv) > 5:
+	subnet_description = sys.argv[5]
+else:
+	subnet_description = input("Enter subnet description: ")
+
 
 #################################################
 # 4. Create an IP Network object
@@ -90,7 +110,7 @@ i = 0
 print()
 while(i<ndevices):
 	ip_out = subnet_range(start_subnet, end_subnet)[i]
-	print(output_message.format(ip_out, ticket_number))
+	print(output_message.format(location_name, ip_out, location_name, subnet_description, ticket_number))
 	i = i+1
 
 print()

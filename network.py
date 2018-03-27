@@ -17,12 +17,9 @@ else:
 net = ipaddress.ip_network(startIP)
 print(net)
 # print(net.prefixlen)
-print(list(net.subnets()))
-for subnet in net.subnets(new_prefix=net.max_prefixlen):
-    print(subnet)
-    for ipaddr in subnet:
-        print(ipaddr)
-        # print(ipaddress.ip_address(x) + 128)
+
+for addr in net.hosts():
+    print(addr)
 
 print('---')
     # for i, ip in zip(range(5), net):
